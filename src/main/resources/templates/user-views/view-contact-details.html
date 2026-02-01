@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{user-views/user-base::layout(~{::section})}">
+<head>
+    <meta charset="utf-8">
+    <title>Contact Details</title>
+</head>
+<body>
+<section>
+    <div class="container mt-2">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Contact Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Left column - Image -->
+                    <div class="col-md-4 text-center">
+                        <img src="" th:src="@{'/images/' + ${contact.image}}"
+                             alt="Contact Photo"
+                             class="img-fluid rounded-circle shadow"
+                             style="width: 200px; height: 200px; object-fit: cover;">
+                    </div>
+
+                    <!-- Right column - Details -->
+                    <div class="col-md-8">
+                        <h4 th:text="${contact.firstName + ' ' + contact.lastName}">Name</h4>
+                        <hr>
+                        <p><strong>Email:</strong> <span th:text="${contact.email}">email</span></p>
+                        <p><strong>Phone:</strong> <span th:text="${contact.phone}">phone</span></p>
+                        <p><strong>Work:</strong> <span th:text="${contact.work}">work</span></p>
+                        <p><strong>About:</strong></p>
+                        <div th:utext="${contact.about}">About content</div>
+
+                        <div class="mt-4">
+                            <a th:href="@{'/users/editContact/' + ${contact.id}}" class="btn btn-warning">Edit</a>
+                            <a th:href="@{'/users/deleteContact/' + ${contact.id}}"
+                               class="btn btn-danger"
+                               onclick="return confirm('Delete this contact?');">Delete</a>
+                            <a th:href="@{/users/viewContacts/0}" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
